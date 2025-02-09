@@ -23,15 +23,15 @@ public class HotelsController : ControllerBase
     /// </summary>
     /// <returns></returns>
     [HttpGet]
-    public IActionResult Get(){
-        var hotels = this.hotelService.GetAllHotels();
+    public async Task<IActionResult> Get(){
+        var hotels = await this.hotelService.GetAllHotels();
         return Ok(hotels); // 200 + body kısmına hotels'i ekle
     }
 
     [HttpGet]
     [Route("GetHotelById/{id}")]
-    public IActionResult Get(int id){
-        var hotel = this.hotelService.GetHotelById(id);
+    public async Task<IActionResult> Get(int id){
+        var hotel = await this.hotelService.GetHotelById(id);
         if (hotel != null){
             return Ok(hotel); // 200 + data
         }
@@ -40,8 +40,8 @@ public class HotelsController : ControllerBase
 
     [HttpGet]
     [Route("[action]/{name}")]
-    public IActionResult GetHotelByName(string name){
-        var hotel = this.hotelService.GetHotelByName(name);
+    public async Task<IActionResult> GetHotelByName(string name){
+        var hotel = await this.hotelService.GetHotelByName(name);
         if (hotel != null){
             return Ok(hotel);
         }
@@ -49,24 +49,24 @@ public class HotelsController : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult Post([FromBody] Hotel hotel){
-        var createdHotel = this.hotelService.CreateHotel(hotel);
+    public async Task<IActionResult> Post([FromBody] Hotel hotel){
+        var createdHotel = await this.hotelService.CreateHotel(hotel);
         return CreatedAtAction("Get",new {id=createdHotel.Id},createdHotel); // 201 + data
     }
     
     [HttpPut]
-    public IActionResult Put([FromBody] Hotel hotel){
-        if (this.hotelService.GetHotelById(hotel.Id) != null){
-            return Ok(this.hotelService.UpdateHotel(hotel));
+    public async Task<IActionResult> Put([FromBody] Hotel hotel){
+        if (await this.hotelService.GetHotelById(hotel.Id) != null){
+            return Ok(await this.hotelService.UpdateHotel(hotel));
         }
         return NotFound();
     }
 
     [HttpDelete]
     [Route("{id}")]
-    public IActionResult Delete(int id){
-        if (this.hotelService.GetHotelById(id) != null){
-            this.hotelService.DeleteHotel(id);
+    public async Task<IActionResult> Delete(int id){
+        if (await this.hotelService.GetHotelById(id) != null){
+            await this.hotelService.DeleteHotel(id);
             return Ok();
         }
         return NotFound();
