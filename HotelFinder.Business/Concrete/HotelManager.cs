@@ -13,37 +13,37 @@ public class HotelManager : IHotelService
     {
         this.hotelRepository = hotelRepository;
     }
-    public Hotel CreateHotel(Hotel hotel)
+    public async Task<Hotel> CreateHotel(Hotel hotel)
     {
-        return this.hotelRepository.CreateHotel(hotel);
+        return await this.hotelRepository.CreateHotel(hotel);
     }
 
-    public void DeleteHotel(int id)
+    public async Task DeleteHotel(int id)
     {
-        this.hotelRepository.DeleteHotel(id);
+        await this.hotelRepository.DeleteHotel(id);
     }
 
-    public List<Hotel> GetAllHotels()
+    public async Task<List<Hotel>> GetAllHotels()
     {
-        return this.hotelRepository.GetAllHotels();
+        return await this.hotelRepository.GetAllHotels();
     }
 
-    public Hotel GetHotelById(int id)
+    public async Task<Hotel> GetHotelById(int id)
     {
         if (id > 0)
         {
-            return this.hotelRepository.GetHotelById(id);
+            return await this.hotelRepository.GetHotelById(id);
         }
         throw new Exception("Id 1'den küçük olamaz!");
     }
 
-    public Hotel GetHotelByName(string name)
+    public async Task<Hotel> GetHotelByName(string name)
     {
-        return this.hotelRepository.GetHotelByName(name);
+        return await this.hotelRepository.GetHotelByName(name);
     }
 
-    public Hotel UpdateHotel(Hotel hotel)
+    public async Task<Hotel> UpdateHotel(Hotel hotel)
     {
-        return this.hotelRepository.UpdateHotel(hotel);
+        return await this.hotelRepository.UpdateHotel(hotel);
     }
 }
