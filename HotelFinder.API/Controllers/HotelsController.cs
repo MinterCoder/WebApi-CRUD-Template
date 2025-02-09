@@ -18,6 +18,10 @@ public class HotelsController : ControllerBase
         this.hotelService = hotelService;
     }
 
+    /// <summary>
+    /// Get All Hotels
+    /// </summary>
+    /// <returns></returns>
     [HttpGet]
     public List<Hotel> Get(){
         return this.hotelService.GetAllHotels();

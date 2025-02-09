@@ -11,4 +11,9 @@
     <ProjectReference Include="..\HotelFinder.Entities\HotelFinder.Entities.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="NSwag.AspNetCore" Version="14.2.0" />
+    <PackageReference Include="System.Text.Json" Version="8.0.0" />
+  </ItemGroup>
+
 </Project>
