@@ -39,6 +39,13 @@ public class HotelRepository : IHotelRepository
         }
     }
 
+    public Hotel GetHotelByName(string name)
+    {
+        using(var hotelDbContext = new HotelDBContext()){
+            return hotelDbContext.Hotels.FirstOrDefault(x=>x.Name.ToLower()==name.ToLower());
+        }
+    }
+
     public Hotel UpdateHotel(Hotel hotel)
     {
         using(var hotelDbContext = new HotelDBContext()){

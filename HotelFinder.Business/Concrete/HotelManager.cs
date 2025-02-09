@@ -37,6 +37,11 @@ public class HotelManager : IHotelService
         throw new Exception("Id 1'den küçük olamaz!");
     }
 
+    public Hotel GetHotelByName(string name)
+    {
+        return this.hotelRepository.GetHotelByName(name);
+    }
+
     public Hotel UpdateHotel(Hotel hotel)
     {
         return this.hotelRepository.UpdateHotel(hotel);
